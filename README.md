@@ -27,8 +27,10 @@ git config --global pack.window 0
 ```
 #!/bin/sh
 name=`git remote -v | grep origin | head -n1 | awk '{print $2}' | sed -e 's,.*:\(.*/\)\?,,' -e 's/\.git$//'`
-branch=`git symbolic-ref -q --short HEAD`
-commitId=`git rev-parse --verify HEAD`
+#branch=`git symbolic-ref -q --short HEAD`
+branch=`git branch --show-current | sed -e 's/\//_/g'`
+#commitId=`git rev-parse --verify HEAD`
+commitId=`git show -s --format=%H`
 datetime=`git show -s --date=format:'%Y%m%d_%H%M%S%z' --format=%cd`
 
 git archive --format=tar.gz -o ${name}_${branch}_${datetime}_${commitId}.tar.gz HEAD
