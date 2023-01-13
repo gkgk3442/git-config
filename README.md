@@ -31,5 +31,5 @@ branch=`git symbolic-ref -q --short HEAD`
 commitId=`git rev-parse --verify HEAD`
 datetime=`git show -s --date=format:'%Y%m%d_%H%M%S%z' --format=%cd`
 
-git archive --format=tar.gz -o ${name}_${branch}_${datetime}_${commitId}.tar.gz master
+git archive --format=tar.gz -o ${name}_${branch}_${datetime}_${commitId}.tar.gz HEAD
 ```
