@@ -35,3 +35,8 @@ datetime=`git show -s --date=format:'%Y%m%d_%H%M%S%z' --format=%cd`
 
 git archive --format=tar.gz -o ${name}_${branch}_${datetime}_${commitId}.tar.gz HEAD
 ```
+
+# git 소스 압축 파일 생성2
+```
+git archive --format=tar.gz -o "$(basename $(git rev-parse --show-toplevel))_$(git rev-parse --abbrev-ref HEAD)_$(git rev-parse HEAD)_$(git log -1 --format=%cd --date=format:'%Y%m%d_%H%M%S%z').tar.gz" HEAD
+```
